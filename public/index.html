@@ -5,21 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>エアホッケーゲーム</title>
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    <script defer src="/socket.io/socket.io.js"></script><!--ioが先、index.jsでio呼び出ししてるからundifinedになるかも-->
+    <script defer src="index.js"></script>
 </head>
 <body>
     <div class="content-wrapper">
         <h1>エアホッケーゲーム</h1>
-        <button>マッチング開始</button>
-        <p><div id="message"></div></p>
+        <button id="match-btn">マッチングスタート</button>
     </div>
-    
-    <script>
-        fetch('/api/message')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('message').innerText = data;
-            });
-    </script>
 </body>
 </html>
