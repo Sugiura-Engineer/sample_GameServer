@@ -7,3 +7,5 @@ SiteLink：バックエンド搭載のため無し<br>
 Node.js(express,socket.io)<br>
 
 ### 概要.（制作中）勉強用に制作したエアホッケーができるゲームサーバです<br>
+
+使用の際はターミナルにて`node server.js`で<http://localhost:3000>にお願いします。<br>
