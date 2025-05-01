@@ -9,9 +9,11 @@ module.exports = (server) => {
 
         socket.on('request_match', () => {
             if (waitingPlayer) {
-                // 既に待っているプレイヤーがいた場合、マッチング成立
-                socket.emit('match_success', 'マッチング成功！');
-                waitingPlayer.emit('match_success', 'マッチング成功！');
+                const player1 = waitingPlayer;
+                const player2 = socket;
+
+                player1.emit('match_success','マッチング成功！');
+                player2.emit('match_success','マッチング成功！');
 
                 // ここでゲーム開始処理を実装できます
                 waitingPlayer = null; // 待機中プレイヤーをリセット
@@ -29,5 +31,13 @@ module.exports = (server) => {
                 console.log('ユーザーが切断しました:', socket.id);
             }
         });
+
+        socket.on('match_cancel', () =>{
+            if(waitingPlayer === socket) {
+                waitingPlayer = null;
+                console.log('マッチングリクエストをキャンセルしました',socket.id);
+            }
+        });
+        
     });
 };

@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="index.css">
     <script defer src="/socket.io/socket.io.js"></script><!--ioが先、index.jsでio呼び出ししてるからundifinedになるかも-->
     <script defer src="index.js"></script>
+    <script defer src="game.js"></script>
 </head>
 <body>
     <div class="content-wrapper">
         <h1>エアホッケーゲーム</h1>
+        
+        <!--ボタン-->
         <button id="match-btn">マッチングスタート</button>
+        <p id="match-success-display">マッチング成功!!</p>
+
+        <!--ゲーム画面-->
+        <canvas id="game-screen">
+            
+        </canvas>
     </div>
-</body>
 </html>

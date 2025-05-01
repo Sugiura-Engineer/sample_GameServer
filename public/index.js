@@ -1,10 +1,34 @@
 const socket =io();
 
+let hasRequested = false;
+
 document.getElementById('match-btn').addEventListener('click', ()=>{
-  socket.emit('request_match');//マッチリクエスト送信
-  console.log('リクエスト送信');
+  if(!hasRequested){//リクエストしてなければ.
+    hasRequested = true;
+    document.getElementById("match-btn").innerHTML = "キャンセルする";
+    socket.emit('request_match');
+    console.log('リクエスト送信');
+  }else{//すでにしてれば.
+    hasRequested = false;
+    document.getElementById("match-btn").innerHTML = "マッチングスタート";
+    socket.emit('match_cancel');
+    console.log("リクエストキャンセル");
+  }
 });
 
+//マッチ成功処理.
 socket.on('match_success',(msg) =>{
-  alert(msg);//マッチ成功のメッセ受け取り.
-})
+
+  //ボタン消してマッチング成功！を出す.
+  document.getElementById('match-btn').style.display = 'none';
+  const text = document.getElementById('match-success-display');
+  text.style.display = 'flex';
+
+  // 2秒後に非表示にしてゲーム画面を表示
+  setTimeout(() => {
+    text.style.display = 'none';
+    document.getElementById('game-screen').style.display = 'flex';
+
+    // ゲームシークエンス突入
+  }, 2000);
+});
