@@ -1,4 +1,5 @@
 const socket =io();
+import { drawGameCanvas } from "./gameCanvas.js";
 
 let hasRequested = false;
 
@@ -28,6 +29,8 @@ socket.on('match_success',(msg) =>{
   setTimeout(() => {
     text.style.display = 'none';
     document.getElementById('game-screen').style.display = 'flex';
+
+    drawGameCanvas();//ここで初めて描画(こうしないとdisplay:noneのまま描画してしまい、中身が空になる).
 
     // ゲームシークエンス突入
   }, 2000);

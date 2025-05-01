@@ -22,10 +22,9 @@ body{
 
 /*ゲーム画面.*/
 #game-screen{
-    height:70%;
-    aspect-ratio: 1/1;
+    width:70%;
+    height:1/2;
     margin-top: 5vh;
-    background-color: aqua;
     margin:auto;
 
    display:none;
